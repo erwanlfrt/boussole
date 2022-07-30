@@ -1,0 +1,31 @@
+{
+  "name": "boussole",
+  "version": "0.0.1",
+  "description": "js library for spatial navigation",
+  "main": "dist/vue-js-spatial-navigation.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack serve --bonjour",
+    "start": "nodemon --exec \"npm run build\" -e ts --ignore dist/"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "focus-options-polyfill": "^1.6.0",
+    "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
+    "scroll-behavior-polyfill": "^2.0.13",
+    "ts-loader": "^9.3.0",
+    "vue": "^3.2.36",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
