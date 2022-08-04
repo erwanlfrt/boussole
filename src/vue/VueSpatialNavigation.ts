@@ -1,8 +1,8 @@
 import { App, Directive } from '@vue/runtime-core';
-import { sn } from './SpatialNavigation';
+import { sn } from '../SpatialNavigation';
 import 'focus-options-polyfill';
 import 'scroll-behavior-polyfill';
-import { Configuration, defaultConfiguration } from './types/Configuration';
+import { Configuration, defaultConfiguration } from '../types/Configuration';
 
 const vueSpatialNavigation = {
   disable () {
