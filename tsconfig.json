@@ -2,8 +2,8 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "module": "commonjs",
-    "target": "es5",
-    "lib": [ "es2015", "dom" ],
+    "target": "es2020",
+    "lib": [ "es2018", "dom" ],
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
