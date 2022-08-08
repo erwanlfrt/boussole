@@ -2,7 +2,7 @@
   "name": "boussole",
   "version": "0.0.1",
   "description": "js library for spatial navigation",
-  "main": "dist/vue-js-spatial-navigation.js",
+  "main": "dist/boussole.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"

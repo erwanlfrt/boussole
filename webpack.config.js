@@ -3,14 +3,13 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    'vue-js-spatial-navigation': './src/index.ts',
-    'vue-js-spatial-navigation': './src/index.ts'
+    'boussole': './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     libraryTarget: 'umd',
-    library: 'vue-js-spatial-navigation',
+    library: 'boussole',
     umdNamedDefine: true
   },
   resolve: {
