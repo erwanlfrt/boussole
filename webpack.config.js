@@ -4,6 +4,7 @@ module.exports = {
   mode: 'development',
   entry: {
     'boussole': './src/index.ts',
+    'angular/index': './src/angular/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
