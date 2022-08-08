@@ -5136,6 +5136,7 @@ let FocusSectionDirective = class FocusSectionDirective {
             sectionConfig.selector = `[data-section-id="${sectionId}"] [data-focusable=true]`;
             return sectionConfig;
         };
+        console.log('focusSectionDirective called el = ', el);
         let sectionId = null;
         if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
             sectionId = this.focusSection.id;
@@ -35838,6 +35839,7 @@ const VueSpatialNavigation_1 = __webpack_require__(/*! ./vue/VueSpatialNavigatio
 exports.vjsn = VueSpatialNavigation_1.default;
 const SpatialNavigation_1 = __webpack_require__(/*! ./SpatialNavigation */ "./src/SpatialNavigation.ts");
 Object.defineProperty(exports, "SpatialNavigation", ({ enumerable: true, get: function () { return SpatialNavigation_1.SpatialNavigation; } }));
+console.log('hello from boussole');
 
 })();
 

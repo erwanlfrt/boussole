@@ -5,4 +5,6 @@ import vueSpatialNavigation from './vue/VueSpatialNavigation';
 import { SpatialNavigation } from './SpatialNavigation';
 import { Configuration } from './types/Configuration';
 
+console.log('hello from boussole');
+
 export { vueSpatialNavigation as vjsn, SpatialNavigation, Configuration, FocusDirective, FocusSectionDirective};

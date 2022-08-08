@@ -3891,6 +3891,7 @@ let FocusSectionDirective = class FocusSectionDirective {
             sectionConfig.selector = `[data-section-id="${sectionId}"] [data-focusable=true]`;
             return sectionConfig;
         };
+        console.log('focusSectionDirective called el = ', el);
         let sectionId = null;
         if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
             sectionId = this.focusSection.id;
@@ -34463,6 +34464,7 @@ const focus_directive_1 = __webpack_require__(/*! ./focus.directive */ "./src/an
 Object.defineProperty(exports, "FocusDirective", ({ enumerable: true, get: function () { return focus_directive_1.FocusDirective; } }));
 const focusSection_directive_1 = __webpack_require__(/*! ./focusSection.directive */ "./src/angular/focusSection.directive.ts");
 Object.defineProperty(exports, "FocusSectionDirective", ({ enumerable: true, get: function () { return focusSection_directive_1.FocusSectionDirective; } }));
+console.log('hello from boussole');
 
 })();
 
