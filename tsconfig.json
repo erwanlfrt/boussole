@@ -7,7 +7,7 @@
       "boussole": [
         "dist"
       ],
-      "boussole/angular": [
+      "angular": [
         "dist/angular"
       ]
     },
