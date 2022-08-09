@@ -7,8 +7,8 @@
       "boussole": [
         "dist"
       ],
-      "boussole/*": [
-        "dist/*"
+      "boussole/angular": [
+        "dist/angular"
       ]
     },
     "outDir": "./dist",
