@@ -2,8 +2,11 @@
   "name": "boussole",
   "version": "0.0.1",
   "description": "js library for spatial navigation",
-  "main": "dist/boussole.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist/angular.js",
+    "/dist/angular"
+  ],
   "scripts": {
     "build": "webpack",
     "build:angular": "ng build boussole --configuration development",
@@ -51,5 +54,9 @@
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
+  },
+  "exports": {
+    ".": "./dist/boussole.js",
+    "./angular": "./dist/angular.js"
   }
 }
