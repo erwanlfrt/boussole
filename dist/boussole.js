@@ -5136,7 +5136,7 @@ let FocusSectionDirective = class FocusSectionDirective {
             sectionConfig.selector = `[data-section-id="${sectionId}"] [data-focusable=true]`;
             return sectionConfig;
         };
-        console.log('focusSectionDirective called el = ', el);
+        console.log('focusSectionDirective calleddd el = ', el);
         let sectionId = null;
         if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
             sectionId = this.focusSection.id;

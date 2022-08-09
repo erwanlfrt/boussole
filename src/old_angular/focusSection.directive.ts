@@ -20,7 +20,7 @@ export class FocusSectionDirective {
   };
 
   constructor(private el: ElementRef) {
-    console.log('focusSectionDirective called el = ', el);
+    console.log('focusSectionDirective calledddel = ', el);
     let sectionId = null;
     if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
       sectionId = this.focusSection.id;
