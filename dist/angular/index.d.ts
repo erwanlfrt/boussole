@@ -1,3 +1,6 @@
-import { FocusDirective } from "./focus.directive";
-import { FocusSectionDirective } from "./focusSection.directive";
-export { FocusDirective, FocusSectionDirective };
+/**
+ * Generated bundle index. Do not edit.
+ */
+/// <amd-module name="boussole" />
+export * from './boussole-angular';
+//# sourceMappingURL=boussole.d.ts.map

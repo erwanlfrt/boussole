@@ -42,26 +42,27 @@ const vueSpatialNavigation = {
         }
 
         // set sectionid to data set for removing when unbinding
-        element.dataset.sectionId = sectionId;
+        // set sectionid to data set for removing when unbinding
+        element.dataset['sectionId'] = sectionId;
         sn.set(sectionId, assignConfig(sectionId, binding.value.conf));
         // set default section
-        if (binding.modifiers.default) {
+        if (binding.modifiers['default']) {
           sn.setDefaultSection(sectionId);
         }
       },
       mounted (element: HTMLElement, binding) {
-        let sectionId = element.dataset.sectionId;
+        let sectionId = element.dataset['sectionId'];
         if (binding.arg && sectionId !== binding.arg) {
           sectionId = binding.arg;
-          element.dataset.sectionId = sectionId;
+          element.dataset['sectionId'] = sectionId;
         }
         if (sectionId) {
           sn.hasBeenWaitingForMounted(sectionId);
         }
       },
       unmounted (element: HTMLElement) {
-        if (element.dataset.sectionId) {
-          sn.remove(element.dataset.sectionId);
+        if (element.dataset['sectionId']) {
+          sn.remove(element.dataset['sectionId']);
         }
       }
     };
@@ -90,8 +91,8 @@ const vueSpatialNavigation = {
     const disableElement = (element: HTMLElement, focusable: any) => {
       // eslint-disable-next-line no-unneeded-ternary
       focusable = focusable === false ? false : true;
-      if (!element.dataset.focusable || element.dataset.focusable !== `${focusable}`) {
-        element.dataset.focusable = focusable;
+      if (!element.dataset['focusable'] || element.dataset['focusable'] !== `${focusable}`) {
+        element.dataset['focusable'] = focusable;
         if (focusable) element.tabIndex = -1;
       }
     };

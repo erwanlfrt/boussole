@@ -1,10 +1,6 @@
-import { FocusSectionDirective } from './angular/focusSection.directive';
-import { FocusDirective } from './angular/focus.directive';
 // import { BoussoleModule } from './angular/boussole.module';
 import vueSpatialNavigation from './vue/VueSpatialNavigation';
 import { SpatialNavigation } from './SpatialNavigation';
-import { Configuration } from './types/Configuration';
+import { Configuration, defaultConfiguration } from './types/Configuration';
 
-console.log('hello from boussole');
-
-export { vueSpatialNavigation as vjsn, SpatialNavigation, Configuration, FocusDirective, FocusSectionDirective};
+export { vueSpatialNavigation as vjsn, SpatialNavigation, Configuration, defaultConfiguration};

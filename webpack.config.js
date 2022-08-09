@@ -3,8 +3,7 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    'boussole': './src/index.ts',
-    'angular/index': './src/angular/index.ts'
+    'boussole': './src/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
