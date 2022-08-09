@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Component, Directive, Input, NgModule } from '@angular/core';
+import { Injectable, Directive, Input, NgModule } from '@angular/core';
 
 class BoussoleService {
     constructor() { }
@@ -11,26 +11,6 @@ BoussoleService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Boussole
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return []; }, null); })();
-
-class BoussoleComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-}
-BoussoleComponent.ɵfac = function BoussoleComponent_Factory(t) { return new (t || BoussoleComponent)(); };
-BoussoleComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: BoussoleComponent, selectors: [["lib-boussole"]], decls: 2, vars: 0, template: function BoussoleComponent_Template(rf, ctx) { if (rf & 1) {
-        i0.ɵɵelementStart(0, "p");
-        i0.ɵɵtext(1, " boussole works! ");
-        i0.ɵɵelementEnd();
-    } }, encapsulation: 2 });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BoussoleComponent, [{
-        type: Component,
-        args: [{ selector: 'lib-boussole', template: `
-    <p>
-      boussole works!
-    </p>
-  ` }]
     }], function () { return []; }, null); })();
 
 class FocusDirective {
@@ -45,7 +25,6 @@ class FocusDirective {
                     element.tabIndex = -1;
             }
         };
-        console.log('el = ', el.nativeElement);
         el.nativeElement.dataset['focusable'] = true;
         el.nativeElement.tabIndex = -1;
     }
@@ -1476,8 +1455,6 @@ class FocusSectionDirective {
         this.element = el.nativeElement;
     }
     ngOnInit() {
-        console.log('focusSectionDirective calledddel = ', this.el);
-        console.log('focusSeciton = ', this.focusSection);
         let sectionId = null;
         if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
             sectionId = this.focusSection.id;
@@ -1515,7 +1492,6 @@ FocusSectionDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: Focus
 
 class BoussoleModule {
     constructor() {
-        console.log('boussole module constructor');
         const globalConfig = defaultConfiguration;
         sn.init();
         sn.set(undefined, globalConfig);
@@ -1528,22 +1504,18 @@ BoussoleModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
         type: NgModule,
         args: [{
                 declarations: [
-                    BoussoleComponent,
                     FocusDirective,
                     FocusSectionDirective
                 ],
                 imports: [],
                 exports: [
-                    BoussoleComponent,
                     FocusDirective,
                     FocusSectionDirective
                 ]
             }]
     }], function () { return []; }, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(BoussoleModule, { declarations: [BoussoleComponent,
-        FocusDirective,
-        FocusSectionDirective], exports: [BoussoleComponent,
-        FocusDirective,
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(BoussoleModule, { declarations: [FocusDirective,
+        FocusSectionDirective], exports: [FocusDirective,
         FocusSectionDirective] }); })();
 
 /*
@@ -1554,5 +1526,5 @@ BoussoleModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
  * Generated bundle index. Do not edit.
  */
 
-export { BoussoleComponent, BoussoleModule, BoussoleService, FocusDirective, FocusSectionDirective };
+export { BoussoleModule, BoussoleService, FocusDirective, FocusSectionDirective };
 //# sourceMappingURL=boussole.mjs.map

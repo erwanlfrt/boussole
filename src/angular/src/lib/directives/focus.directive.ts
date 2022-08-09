@@ -16,7 +16,6 @@ export class FocusDirective {
   };
   
   constructor(private el: ElementRef) {
-    console.log('el = ', el.nativeElement);
     el.nativeElement.dataset['focusable'] = true;
     el.nativeElement.tabIndex = -1;
   }

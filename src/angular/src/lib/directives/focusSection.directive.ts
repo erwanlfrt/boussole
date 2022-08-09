@@ -1,8 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { sn } from '../../../../SpatialNavigation'
 import { Configuration, defaultConfiguration } from '../../../../types/Configuration'
-// import { sn, Configuration, defaultConfiguration} from 'boussole/boussole';
-// import { Configuration, defaultConfiguration } from 'src/types/Configuration';
 
 interface SectionDirective {
   id?: string;
@@ -31,8 +29,6 @@ export class FocusSectionDirective {
   }
 
   ngOnInit() {
-    console.log('focusSectionDirective calledddel = ', this.el);
-    console.log('focusSeciton = ', this.focusSection)
     let sectionId = null;
     if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
       sectionId = this.focusSection.id;

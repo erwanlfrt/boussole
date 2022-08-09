@@ -1,6 +1,6 @@
 {
   "name": "boussole",
-  "version": "0.0.0-watch+1660049021083",
+  "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.1.0",
     "@angular/core": "^14.1.0"
