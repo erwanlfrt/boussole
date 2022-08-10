@@ -1,1 +1,1 @@
-export * from './angular/fesm2015/boussole.mjs';
+export * from './angular/src/public-api';

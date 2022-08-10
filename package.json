@@ -62,7 +62,7 @@
   "typesVersions": {
     "*": {
       "angular": [
-        "./dist/boussole-angular.d.ts"
+        "./dist/angular/index.d.ts"
       ]
     }
   }
