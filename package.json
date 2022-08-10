@@ -4,6 +4,7 @@
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
   "main": "dist/boussole.js",
+  "type": "module",
   "files": [
     "/dist"
   ],
