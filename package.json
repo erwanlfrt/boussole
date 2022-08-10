@@ -4,9 +4,6 @@
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
   "main": "dist/boussole.js",
-  "files": [
-    "/dist"
-  ],
   "scripts": {
     "build": "webpack",
     "build:angular": "ng build boussole --configuration development",
