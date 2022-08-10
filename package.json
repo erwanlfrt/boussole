@@ -4,7 +4,6 @@
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
   "main": "dist/boussole.js",
-  "type": "module",
   "files": [
     "/dist"
   ],
@@ -59,5 +58,12 @@
   "exports": {
     ".": "./dist",
     "./angular": "./dist/angular/fesm2015/boussole.mjs"
+  },
+  "typesVersions": {
+    "*": {
+      "angular": [
+        "./dist/boussole-angular.d.ts"
+      ]
+    }
   }
 }
