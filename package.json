@@ -5,8 +5,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/boussole.js",
   "files": [
-    "/dist/angular.js",
-    "/dist/angular"
+    "/dist"
   ],
   "scripts": {
     "build": "webpack",
@@ -57,7 +56,7 @@
     "zone.js": "~0.11.4"
   },
   "exports": {
-    ".": "./dist/boussole.js",
-    "./angular": "./dist/angular.js"
+    ".": "./dist",
+    "./angular": "./dist/angular/fesm2015/boussole.mjs"
   }
 }
