@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:angular": "ng build boussole --configuration development",
     "serve": "webpack serve --bonjour",
-    "start": "nodemon --exec \"npm run build\" -e ts --ignore dist/",
+    "start": "nodemon --exec \"npm run build\" -e ts,tsx --ignore dist/",
     "watch:angular": "ng build boussole --watch --configuration development"
   },
   "devDependencies": {
@@ -16,6 +16,7 @@
     "@angular/cli": "~14.1.1",
     "@angular/compiler-cli": "^14.1.0",
     "@types/jasmine": "~4.0.0",
+    "@types/react": "^18.0.17",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^8.19.0",
@@ -55,12 +56,16 @@
   },
   "exports": {
     ".": "./dist/boussole.js",
-    "./angular": "./dist/angular/fesm2015/boussole.mjs"
+    "./angular": "./dist/angular/fesm2015/boussole.mjs",
+    "./react": "./dist/react.js"
   },
   "typesVersions": {
     "*": {
       "angular": [
         "./dist/angular/index.d.ts"
+      ],
+      "react": [
+        "./dist/react/index.d.ts"
       ]
     }
   }
