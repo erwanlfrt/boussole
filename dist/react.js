@@ -4166,7 +4166,7 @@ const BoussoleSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props
         }
         return child;
     });
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, props.children));
+    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, child));
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BoussoleSection);
 
@@ -4447,10 +4447,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BoussoleElement": () => (/* reexport safe */ _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "BoussoleSection": () => (/* reexport safe */ _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__["default"])
+/* harmony export */   "BoussoleSection": () => (/* reexport safe */ _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   "SpatialNavigation": () => (/* reexport safe */ _SpatialNavigation__WEBPACK_IMPORTED_MODULE_2__.SpatialNavigation)
 /* harmony export */ });
 /* harmony import */ var _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoussoleElement */ "./src/react/BoussoleElement.tsx");
 /* harmony import */ var _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoussoleSection */ "./src/react/BoussoleSection.tsx");
+/* harmony import */ var _SpatialNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SpatialNavigation */ "./src/SpatialNavigation.ts");
+
 
 
 

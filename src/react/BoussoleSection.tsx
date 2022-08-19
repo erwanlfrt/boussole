@@ -51,7 +51,7 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
     });
     return(
       <React.Fragment>
-        { props.children }
+        { child }
       </React.Fragment>
     )
   }
