@@ -414,6 +414,13 @@ class SpatialNavigation {
         const sectionElement = this._sections[id].configuration.element;
         if (sectionElement) {
           sectionsElements[id] = sectionElement;
+        } else {
+          if (this._sections[id].configuration.selector !== '' && this._sections[id].configuration.selector !== undefined) {
+            const elementWithSelector = this.core.parseSelector(`[data-section-id="${id}"]`)[0]
+            if (elementWithSelector) {
+              sectionsElements[id] = elementWithSelector;
+            }
+          }
         }
       }
     }
