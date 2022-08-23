@@ -9,7 +9,8 @@
     "build:angular": "ng build boussole --configuration development",
     "serve": "webpack serve --bonjour",
     "start": "nodemon --exec \"npm run build\" -e ts,tsx --ignore dist/",
-    "watch:angular": "ng build boussole --watch --configuration development"
+    "watch:angular": "ng build boussole --watch --configuration development",
+    "doc": "typedoc --tsconfig docconfig.json && mv doc.json ../doc-boussole/src/assets/"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.1",
