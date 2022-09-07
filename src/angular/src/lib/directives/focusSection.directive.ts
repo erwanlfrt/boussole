@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { sn } from '../../../../SpatialNavigation'
+import { sn } from '../../../../Boussole'
 import { Configuration, defaultConfiguration } from '../../../../types/Configuration'
 
 interface SectionDirective {
@@ -30,6 +30,7 @@ export class FocusSectionDirective {
 
   ngOnInit() {
     let sectionId = null;
+
     if (this.focusSection && this.focusSection.id && this.focusSection.conf) {
       sectionId = this.focusSection.id;
       const config = this.focusSection.conf as Configuration;

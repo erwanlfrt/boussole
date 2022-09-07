@@ -1,4 +1,3 @@
-import vueSpatialNavigation from './vue/VueSpatialNavigation';
-import { SpatialNavigation } from './SpatialNavigation';
+import { Boussole } from './Boussole';
 import { Configuration, defaultConfiguration } from './types/Configuration';
-export { vueSpatialNavigation as vjsn, SpatialNavigation, Configuration, defaultConfiguration };
+export { Boussole, Configuration, defaultConfiguration };

@@ -1,6 +1,6 @@
 import { Configuration } from './types/Configuration';
 import { Direction } from './types/Direction';
-declare class SpatialNavigation {
+declare class Boussole {
     private static instance;
     private _ready;
     private _idPool;
@@ -16,13 +16,13 @@ declare class SpatialNavigation {
     private readonly EVENT_PREFIX;
     private focusOnMountedSections;
     private _throttle;
-    static getInstance(): SpatialNavigation;
+    static getInstance(): Boussole;
     /**
      * Init listeners
      */
     init(): void;
     /**
-     * Remove listeners and reinitialize SpatialNavigation attributes.
+     * Remove listeners and reinitialize Boussole attributes.
      */
     uninit(): void;
     /**
@@ -217,6 +217,5 @@ declare class SpatialNavigation {
      */
     private doMakeFocusable;
 }
-declare const sn: SpatialNavigation;
-export { SpatialNavigation, sn };
-//# sourceMappingURL=SpatialNavigation.d.ts.map
+declare const sn: Boussole;
+export { Boussole, sn };

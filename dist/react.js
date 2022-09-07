@@ -2777,400 +2777,15 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/Core.ts":
-/*!*********************!*\
-  !*** ./src/Core.ts ***!
-  \*********************/
+/***/ "./src/Boussole.ts":
+/*!*************************!*\
+  !*** ./src/Boussole.ts ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Core": () => (/* binding */ Core),
-/* harmony export */   "core": () => (/* binding */ core)
-/* harmony export */ });
-/* harmony import */ var _types_Direction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types/Direction */ "./src/types/Direction.ts");
-/* harmony import */ var _types_ElementRectangle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types/ElementRectangle */ "./src/types/ElementRectangle.ts");
-
-
-if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector
-        || Element.prototype.mozMatchesSelector
-        || Element.prototype.msMatchesSelector
-        || Element.prototype.oMatchesSelector
-        || Element.prototype.webkitMatchesSelector
-        || ((s) => {
-            if (undefined) {
-                const matches = (undefined.document || undefined.ownerDocument).querySelectorAll(s);
-                let i = matches.length;
-                while (--i >= 0 && matches.item(i) !== undefined) { }
-                return i > -1;
-            }
-            return false;
-        });
-}
-class Core {
-    static getInstance() {
-        if (!Core.instance) {
-            Core.instance = new Core();
-        }
-        return Core.instance;
-    }
-    /**
-     * Get element rectangle
-     * @param element element
-     * @returns element rectangle
-     */
-    getRect(element) {
-        const cr = element.getBoundingClientRect();
-        const xCenter = cr.left + Math.floor(cr.width / 2);
-        const yCenter = cr.top + Math.floor(cr.height / 2);
-        const center = {
-            x: xCenter,
-            y: yCenter,
-            left: xCenter,
-            right: xCenter,
-            top: yCenter,
-            bottom: yCenter,
-            width: 0,
-            height: 0
-        };
-        return {
-            element,
-            x: cr.x,
-            y: cr.y,
-            left: cr.left,
-            top: cr.top,
-            right: cr.right,
-            bottom: cr.bottom,
-            width: cr.width,
-            height: cr.height,
-            center
-        };
-    }
-    /**
-     * Get the distribution of elements around a target element
-     * This function returns a two-dimensional array, we first dimension = 9 of element rectangle.
-     * Index of arrays corresponds to the position of elements.
-     * Link between index and position : (for threshold = 0)
-     *
-     *    _______  -  _______  -  _______
-     *   |       | - |       | - |       |
-     *   |   0   | - |   1   | - |   2   |
-     *   |_______| - |_______| - |_______|
-     * -------------------------------------
-     *    _______  -  _______  -  _______
-     *   |       | - |       | - |       |
-     *   |   3   | - | TARG. | - |   5   |
-     *   |_______| - |_______| - |_______|
-     *             -           -
-     * -------------------------------------
-     *    _______  -  _______  -  _______
-     *   |       | - |       | - |       |
-     *   |   6   | - |   7   | - |   8   |
-     *   |_______| - |_______| - |_______|
-     *             -           -
-     * @param rects rectangle of elements around the target
-     * @param targetRect rectangle of target element
-     * @param straightOverlapThreshold threshold
-     * @returns distribution of elements around a target element
-     */
-    partition(rects, targetRect, straightOverlapThreshold) {
-        const groups = [[], [], [], [], [], [], [], [], []];
-        for (let i = 0; i < rects.length; i++) {
-            const rect = rects[i];
-            const center = rect.center;
-            let x, y;
-            if (center.x < targetRect.left) {
-                x = 0;
-            }
-            else if (center.x <= targetRect.right) {
-                x = 1;
-            }
-            else {
-                x = 2;
-            }
-            if (center.y < targetRect.top) {
-                y = 0;
-            }
-            else if (center.y <= targetRect.bottom) {
-                y = 1;
-            }
-            else {
-                y = 2;
-            }
-            const groupId = y * 3 + x;
-            groups[groupId].push(rect);
-            if ([0, 2, 6, 8].indexOf(groupId) !== -1) {
-                const threshold = straightOverlapThreshold;
-                if (rect.left <= targetRect.right - targetRect.width * threshold) {
-                    if (groupId === 2) {
-                        groups[1].push(rect);
-                    }
-                    else if (groupId === 8) {
-                        groups[7].push(rect);
-                    }
-                }
-                if (rect.right >= targetRect.left + targetRect.width * threshold) {
-                    if (groupId === 0) {
-                        groups[1].push(rect);
-                    }
-                    else if (groupId === 6) {
-                        groups[7].push(rect);
-                    }
-                }
-                if (rect.top <= targetRect.bottom - targetRect.height * threshold) {
-                    if (groupId === 6) {
-                        groups[3].push(rect);
-                    }
-                    else if (groupId === 8) {
-                        groups[5].push(rect);
-                    }
-                }
-                if (rect.bottom >= targetRect.top + targetRect.height * threshold) {
-                    if (groupId === 0) {
-                        groups[3].push(rect);
-                    }
-                    else if (groupId === 2) {
-                        groups[5].push(rect);
-                    }
-                }
-            }
-        }
-        return groups;
-    }
-    prioritize(priorities) {
-        let destPriority = null;
-        for (let i = 0; i < priorities.length; i++) {
-            if (priorities[i].group.length) {
-                destPriority = priorities[i];
-                break;
-            }
-        }
-        if (!destPriority) {
-            return null;
-        }
-        const destDistance = destPriority.distance;
-        const target = destPriority.target;
-        destPriority.group.sort((a, b) => {
-            for (let i = 0; i < destDistance.length; i++) {
-                const distance = destDistance[i];
-                const delta = distance(a, target) - distance(b, target);
-                if (delta) {
-                    return delta;
-                }
-            }
-            return 0;
-        });
-        return destPriority.group;
-    }
-    /**
-     * Get next element to navigate to, from a target according to a direction
-     * @param target target element
-     * @param direction navigate to this direction
-     * @param candidates candidates elements around target
-     * @param section section of the target
-     * @returns next element to navigate to, null if no next element found
-     */
-    navigate(target, direction, candidates, section) {
-        if (!target || !direction || !candidates || !candidates.length) {
-            return null;
-        }
-        const rects = [];
-        for (let i = 0; i < candidates.length; i++) {
-            const rect = this.getRect(candidates[i]);
-            if (rect) {
-                rects.push(rect);
-            }
-        }
-        if (!rects.length)
-            return null;
-        const targetRect = this.getRect(target);
-        if (!targetRect)
-            return null;
-        const targetRectImpl = new _types_ElementRectangle__WEBPACK_IMPORTED_MODULE_1__.ElementRectangleImpl(targetRect);
-        const groups = this.partition(rects, targetRect, section.configuration.straightOverlapThreshold);
-        const internalGroups = this.partition(groups[4], targetRect.center, section.configuration.straightOverlapThreshold);
-        let priorities;
-        switch (direction) {
-            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.LEFT:
-                priorities = [
-                    {
-                        group: internalGroups[0].concat(internalGroups[3])
-                            .concat(internalGroups[6]),
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.topIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[3],
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.topIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[0].concat(groups[6]),
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.rightIsBetter,
-                            targetRectImpl.nearTargetTopIsBetter
-                        ],
-                        target: targetRectImpl
-                    }
-                ];
-                break;
-            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.RIGHT:
-                priorities = [
-                    {
-                        group: internalGroups[2].concat(internalGroups[5])
-                            .concat(internalGroups[8]),
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.topIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[5],
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.topIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[2].concat(groups[8]),
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.leftIsBetter,
-                            targetRectImpl.nearTargetTopIsBetter
-                        ],
-                        target: targetRectImpl
-                    }
-                ];
-                break;
-            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.UP:
-                priorities = [
-                    {
-                        group: internalGroups[0].concat(internalGroups[1])
-                            .concat(internalGroups[2]),
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.leftIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[1],
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.leftIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[0].concat(groups[2]),
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.bottomIsBetter,
-                            targetRectImpl.nearTargetLeftIsBetter
-                        ],
-                        target: targetRectImpl
-                    }
-                ];
-                break;
-            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.DOWN:
-                priorities = [
-                    {
-                        group: internalGroups[6].concat(internalGroups[7])
-                            .concat(internalGroups[8]),
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.leftIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[7],
-                        distance: [
-                            targetRectImpl.nearHorizonIsBetter,
-                            targetRectImpl.leftIsBetter
-                        ],
-                        target: targetRectImpl
-                    },
-                    {
-                        group: groups[6].concat(groups[8]),
-                        distance: [
-                            targetRectImpl.nearPlumbLineIsBetter,
-                            targetRectImpl.topIsBetter,
-                            targetRectImpl.nearTargetLeftIsBetter
-                        ],
-                        target: targetRectImpl
-                    }
-                ];
-                break;
-            default:
-                return null;
-        }
-        if (section.configuration.straightOnly) {
-            priorities.pop();
-        }
-        const destGroup = this.prioritize(priorities);
-        if (!destGroup) {
-            return null;
-        }
-        let dest = undefined;
-        if (section.configuration.rememberSource
-            && section.previous
-            && section.previous.destination === target
-            && section.previous.reverse === direction) {
-            for (let j = 0; j < destGroup.length; j++) {
-                if (destGroup[j].element === section.previous.target) {
-                    dest = destGroup[j].element;
-                    break;
-                }
-            }
-        }
-        if (!dest)
-            dest = destGroup[0].element;
-        return dest;
-    }
-    /**
-     * Parse selector
-     * @param selector
-     * @returns nodes
-     */
-    parseSelector(selector) {
-        // TO DO handle selector
-        const result = [].slice.call(document.querySelectorAll(selector));
-        return result;
-    }
-    /**
-     * Check if an element match a selector
-     */
-    matchSelector(element, selector) {
-        // TO DO selector as object N
-        return element.matches(selector);
-    }
-}
-const core = Core.getInstance();
-
-
-
-/***/ }),
-
-/***/ "./src/SpatialNavigation.ts":
-/*!**********************************!*\
-  !*** ./src/SpatialNavigation.ts ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SpatialNavigation": () => (/* binding */ SpatialNavigation),
+/* harmony export */   "Boussole": () => (/* binding */ Boussole),
 /* harmony export */   "sn": () => (/* binding */ sn)
 /* harmony export */ });
 /* harmony import */ var _Core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Core */ "./src/Core.ts");
@@ -3179,7 +2794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class SpatialNavigation {
+class Boussole {
     constructor() {
         this._ready = false;
         this._idPool = 0;
@@ -3198,10 +2813,10 @@ class SpatialNavigation {
         // #endregion
     }
     static getInstance() {
-        if (!SpatialNavigation.instance) {
-            SpatialNavigation.instance = new SpatialNavigation();
+        if (!Boussole.instance) {
+            Boussole.instance = new Boussole();
         }
-        return SpatialNavigation.instance;
+        return Boussole.instance;
     }
     // #region PUBLIC FUNCTIONS
     /**
@@ -3218,7 +2833,7 @@ class SpatialNavigation {
         }
     }
     /**
-     * Remove listeners and reinitialize SpatialNavigation attributes.
+     * Remove listeners and reinitialize Boussole attributes.
      */
     uninit() {
         window.removeEventListener('blur', this.onBlur, true);
@@ -4077,7 +3692,392 @@ class SpatialNavigation {
         });
     }
 }
-const sn = SpatialNavigation.getInstance();
+const sn = Boussole.getInstance();
+
+
+
+/***/ }),
+
+/***/ "./src/Core.ts":
+/*!*********************!*\
+  !*** ./src/Core.ts ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Core": () => (/* binding */ Core),
+/* harmony export */   "core": () => (/* binding */ core)
+/* harmony export */ });
+/* harmony import */ var _types_Direction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types/Direction */ "./src/types/Direction.ts");
+/* harmony import */ var _types_ElementRectangle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types/ElementRectangle */ "./src/types/ElementRectangle.ts");
+
+
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.matchesSelector
+        || Element.prototype.mozMatchesSelector
+        || Element.prototype.msMatchesSelector
+        || Element.prototype.oMatchesSelector
+        || Element.prototype.webkitMatchesSelector
+        || ((s) => {
+            if (undefined) {
+                const matches = (undefined.document || undefined.ownerDocument).querySelectorAll(s);
+                let i = matches.length;
+                while (--i >= 0 && matches.item(i) !== undefined) { }
+                return i > -1;
+            }
+            return false;
+        });
+}
+class Core {
+    static getInstance() {
+        if (!Core.instance) {
+            Core.instance = new Core();
+        }
+        return Core.instance;
+    }
+    /**
+     * Get element rectangle
+     * @param element element
+     * @returns element rectangle
+     */
+    getRect(element) {
+        const cr = element.getBoundingClientRect();
+        const xCenter = cr.left + Math.floor(cr.width / 2);
+        const yCenter = cr.top + Math.floor(cr.height / 2);
+        const center = {
+            x: xCenter,
+            y: yCenter,
+            left: xCenter,
+            right: xCenter,
+            top: yCenter,
+            bottom: yCenter,
+            width: 0,
+            height: 0
+        };
+        return {
+            element,
+            x: cr.x,
+            y: cr.y,
+            left: cr.left,
+            top: cr.top,
+            right: cr.right,
+            bottom: cr.bottom,
+            width: cr.width,
+            height: cr.height,
+            center
+        };
+    }
+    /**
+     * Get the distribution of elements around a target element
+     * This function returns a two-dimensional array, we first dimension = 9 of element rectangle.
+     * Index of arrays corresponds to the position of elements.
+     * Link between index and position : (for threshold = 0)
+     *
+     *    _______  -  _______  -  _______
+     *   |       | - |       | - |       |
+     *   |   0   | - |   1   | - |   2   |
+     *   |_______| - |_______| - |_______|
+     * -------------------------------------
+     *    _______  -  _______  -  _______
+     *   |       | - |       | - |       |
+     *   |   3   | - | TARG. | - |   5   |
+     *   |_______| - |_______| - |_______|
+     *             -           -
+     * -------------------------------------
+     *    _______  -  _______  -  _______
+     *   |       | - |       | - |       |
+     *   |   6   | - |   7   | - |   8   |
+     *   |_______| - |_______| - |_______|
+     *             -           -
+     * @param rects rectangle of elements around the target
+     * @param targetRect rectangle of target element
+     * @param straightOverlapThreshold threshold
+     * @returns distribution of elements around a target element
+     */
+    partition(rects, targetRect, straightOverlapThreshold) {
+        const groups = [[], [], [], [], [], [], [], [], []];
+        for (let i = 0; i < rects.length; i++) {
+            const rect = rects[i];
+            const center = rect.center;
+            let x, y;
+            if (center.x < targetRect.left) {
+                x = 0;
+            }
+            else if (center.x <= targetRect.right) {
+                x = 1;
+            }
+            else {
+                x = 2;
+            }
+            if (center.y < targetRect.top) {
+                y = 0;
+            }
+            else if (center.y <= targetRect.bottom) {
+                y = 1;
+            }
+            else {
+                y = 2;
+            }
+            const groupId = y * 3 + x;
+            groups[groupId].push(rect);
+            if ([0, 2, 6, 8].indexOf(groupId) !== -1) {
+                const threshold = straightOverlapThreshold;
+                if (rect.left <= targetRect.right - targetRect.width * threshold) {
+                    if (groupId === 2) {
+                        groups[1].push(rect);
+                    }
+                    else if (groupId === 8) {
+                        groups[7].push(rect);
+                    }
+                }
+                if (rect.right >= targetRect.left + targetRect.width * threshold) {
+                    if (groupId === 0) {
+                        groups[1].push(rect);
+                    }
+                    else if (groupId === 6) {
+                        groups[7].push(rect);
+                    }
+                }
+                if (rect.top <= targetRect.bottom - targetRect.height * threshold) {
+                    if (groupId === 6) {
+                        groups[3].push(rect);
+                    }
+                    else if (groupId === 8) {
+                        groups[5].push(rect);
+                    }
+                }
+                if (rect.bottom >= targetRect.top + targetRect.height * threshold) {
+                    if (groupId === 0) {
+                        groups[3].push(rect);
+                    }
+                    else if (groupId === 2) {
+                        groups[5].push(rect);
+                    }
+                }
+            }
+        }
+        return groups;
+    }
+    prioritize(priorities) {
+        let destPriority = null;
+        for (let i = 0; i < priorities.length; i++) {
+            if (priorities[i].group.length) {
+                destPriority = priorities[i];
+                break;
+            }
+        }
+        if (!destPriority) {
+            return null;
+        }
+        const destDistance = destPriority.distance;
+        const target = destPriority.target;
+        destPriority.group.sort((a, b) => {
+            for (let i = 0; i < destDistance.length; i++) {
+                const distance = destDistance[i];
+                const delta = distance(a, target) - distance(b, target);
+                if (delta) {
+                    return delta;
+                }
+            }
+            return 0;
+        });
+        return destPriority.group;
+    }
+    /**
+     * Get next element to navigate to, from a target according to a direction
+     * @param target target element
+     * @param direction navigate to this direction
+     * @param candidates candidates elements around target
+     * @param section section of the target
+     * @returns next element to navigate to, null if no next element found
+     */
+    navigate(target, direction, candidates, section) {
+        if (!target || !direction || !candidates || !candidates.length) {
+            return null;
+        }
+        const rects = [];
+        for (let i = 0; i < candidates.length; i++) {
+            const rect = this.getRect(candidates[i]);
+            if (rect) {
+                rects.push(rect);
+            }
+        }
+        if (!rects.length)
+            return null;
+        const targetRect = this.getRect(target);
+        if (!targetRect)
+            return null;
+        const targetRectImpl = new _types_ElementRectangle__WEBPACK_IMPORTED_MODULE_1__.ElementRectangleImpl(targetRect);
+        const groups = this.partition(rects, targetRect, section.configuration.straightOverlapThreshold);
+        const internalGroups = this.partition(groups[4], targetRect.center, section.configuration.straightOverlapThreshold);
+        let priorities;
+        switch (direction) {
+            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.LEFT:
+                priorities = [
+                    {
+                        group: internalGroups[0].concat(internalGroups[3])
+                            .concat(internalGroups[6]),
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.topIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[3],
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.topIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[0].concat(groups[6]),
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.rightIsBetter,
+                            targetRectImpl.nearTargetTopIsBetter
+                        ],
+                        target: targetRectImpl
+                    }
+                ];
+                break;
+            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.RIGHT:
+                priorities = [
+                    {
+                        group: internalGroups[2].concat(internalGroups[5])
+                            .concat(internalGroups[8]),
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.topIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[5],
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.topIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[2].concat(groups[8]),
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.leftIsBetter,
+                            targetRectImpl.nearTargetTopIsBetter
+                        ],
+                        target: targetRectImpl
+                    }
+                ];
+                break;
+            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.UP:
+                priorities = [
+                    {
+                        group: internalGroups[0].concat(internalGroups[1])
+                            .concat(internalGroups[2]),
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.leftIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[1],
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.leftIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[0].concat(groups[2]),
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.bottomIsBetter,
+                            targetRectImpl.nearTargetLeftIsBetter
+                        ],
+                        target: targetRectImpl
+                    }
+                ];
+                break;
+            case _types_Direction__WEBPACK_IMPORTED_MODULE_0__.Direction.DOWN:
+                priorities = [
+                    {
+                        group: internalGroups[6].concat(internalGroups[7])
+                            .concat(internalGroups[8]),
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.leftIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[7],
+                        distance: [
+                            targetRectImpl.nearHorizonIsBetter,
+                            targetRectImpl.leftIsBetter
+                        ],
+                        target: targetRectImpl
+                    },
+                    {
+                        group: groups[6].concat(groups[8]),
+                        distance: [
+                            targetRectImpl.nearPlumbLineIsBetter,
+                            targetRectImpl.topIsBetter,
+                            targetRectImpl.nearTargetLeftIsBetter
+                        ],
+                        target: targetRectImpl
+                    }
+                ];
+                break;
+            default:
+                return null;
+        }
+        if (section.configuration.straightOnly) {
+            priorities.pop();
+        }
+        const destGroup = this.prioritize(priorities);
+        if (!destGroup) {
+            return null;
+        }
+        let dest = undefined;
+        if (section.configuration.rememberSource
+            && section.previous
+            && section.previous.destination === target
+            && section.previous.reverse === direction) {
+            for (let j = 0; j < destGroup.length; j++) {
+                if (destGroup[j].element === section.previous.target) {
+                    dest = destGroup[j].element;
+                    break;
+                }
+            }
+        }
+        if (!dest)
+            dest = destGroup[0].element;
+        return dest;
+    }
+    /**
+     * Parse selector
+     * @param selector
+     * @returns nodes
+     */
+    parseSelector(selector) {
+        // TO DO handle selector
+        const result = [].slice.call(document.querySelectorAll(selector));
+        return result;
+    }
+    /**
+     * Check if an element match a selector
+     */
+    matchSelector(element, selector) {
+        // TO DO selector as object N
+        return element.matches(selector);
+    }
+}
+const core = Core.getInstance();
 
 
 
@@ -4124,7 +4124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SpatialNavigation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SpatialNavigation */ "./src/SpatialNavigation.ts");
+/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
 /* harmony import */ var _types_Configuration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/Configuration */ "./src/types/Configuration.ts");
 
 
@@ -4151,20 +4151,20 @@ const BoussoleSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props
         sectionId = props.id;
         config = props.conf;
         try {
-            _SpatialNavigation__WEBPACK_IMPORTED_MODULE_1__.SpatialNavigation.getInstance().add(sectionId, config);
+            _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().add(sectionId, config);
         }
         catch (error) { }
     }
     else {
-        sectionId = _SpatialNavigation__WEBPACK_IMPORTED_MODULE_1__.SpatialNavigation.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
+        sectionId = _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
     }
     // config.element = this.el.nativeElement;
     if (config) {
-        _SpatialNavigation__WEBPACK_IMPORTED_MODULE_1__.SpatialNavigation.getInstance().set(sectionId, assignConfig(sectionId, config));
+        _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().set(sectionId, assignConfig(sectionId, config));
     }
     // set default section
     // if (this.focusSection.modifiers.default) {
-    // SpatialNavigation.getInstance().setDefaultSection(sectionId);
+    // Boussole.getInstance().setDefaultSection(sectionId);
     //   }
     const child = react__WEBPACK_IMPORTED_MODULE_0___default().Children.map(props.children, child => {
         // Checking isValidElement is the safe way and avoids a typescript
@@ -4454,13 +4454,13 @@ var __webpack_exports__ = {};
   \****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Boussole": () => (/* reexport safe */ _Boussole__WEBPACK_IMPORTED_MODULE_2__.Boussole),
 /* harmony export */   "BoussoleElement": () => (/* reexport safe */ _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "BoussoleSection": () => (/* reexport safe */ _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__["default"]),
-/* harmony export */   "SpatialNavigation": () => (/* reexport safe */ _SpatialNavigation__WEBPACK_IMPORTED_MODULE_2__.SpatialNavigation)
+/* harmony export */   "BoussoleSection": () => (/* reexport safe */ _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
 /* harmony import */ var _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoussoleElement */ "./src/react/BoussoleElement.tsx");
 /* harmony import */ var _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoussoleSection */ "./src/react/BoussoleSection.tsx");
-/* harmony import */ var _SpatialNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SpatialNavigation */ "./src/SpatialNavigation.ts");
+/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
 
 
 

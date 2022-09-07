@@ -1,5 +1,5 @@
 import React, { createRef, forwardRef } from 'react';
-import { SpatialNavigation } from '../SpatialNavigation';
+import { Boussole } from '../Boussole';
 import { Configuration, defaultConfiguration } from '../types/Configuration';
 
 class ElementProps implements React.HTMLProps<HTMLElement> {
@@ -26,19 +26,19 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
       sectionId = props.id;
       config = props.conf as Configuration;
       try {
-        SpatialNavigation.getInstance().add(sectionId, config);
+        Boussole.getInstance().add(sectionId, config);
       } catch (error) {}
     } else {
-      sectionId = SpatialNavigation.getInstance().add(undefined, defaultConfiguration);
+      sectionId = Boussole.getInstance().add(undefined, defaultConfiguration);
     }
     
     // config.element = this.el.nativeElement;
     if (config) {
-      SpatialNavigation.getInstance().set(sectionId, assignConfig(sectionId, config));
+      Boussole.getInstance().set(sectionId, assignConfig(sectionId, config));
     }
     // set default section
     // if (this.focusSection.modifiers.default) {
-    // SpatialNavigation.getInstance().setDefaultSection(sectionId);
+    // Boussole.getInstance().setDefaultSection(sectionId);
     //   }
 
     const child = React.Children.map(props.children, child => {

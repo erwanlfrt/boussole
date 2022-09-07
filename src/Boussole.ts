@@ -3,8 +3,8 @@ import { Configuration, defaultConfiguration } from './types/Configuration';
 import { Direction, directiontoString, getReverseDirection } from './types/Direction';
 import { Section } from './types/Section';
 
-class SpatialNavigation {
-  private static instance: SpatialNavigation;
+class Boussole {
+  private static instance: Boussole;
   private _ready: boolean = false;
   private _idPool: number = 0;
   private _sections: { [key: string]: Section; } = {};
@@ -20,11 +20,11 @@ class SpatialNavigation {
   private focusOnMountedSections: string[] = [];
   private _throttle: number | null = null;
 
-  public static getInstance (): SpatialNavigation {
-    if (!SpatialNavigation.instance) {
-      SpatialNavigation.instance = new SpatialNavigation();
+  public static getInstance (): Boussole {
+    if (!Boussole.instance) {
+      Boussole.instance = new Boussole();
     }
-    return SpatialNavigation.instance;
+    return Boussole.instance;
   }
 
   // #region PUBLIC FUNCTIONS
@@ -44,7 +44,7 @@ class SpatialNavigation {
   }
 
   /**
-   * Remove listeners and reinitialize SpatialNavigation attributes.
+   * Remove listeners and reinitialize Boussole attributes.
    */
   public uninit (): void {
     window.removeEventListener('blur', this.onBlur, true);
@@ -981,5 +981,5 @@ class SpatialNavigation {
   // #endregion
 }
 
-const sn = SpatialNavigation.getInstance();
-export { SpatialNavigation, sn };
+const sn = Boussole.getInstance();
+export { Boussole, sn };

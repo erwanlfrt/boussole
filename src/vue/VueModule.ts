@@ -1,10 +1,10 @@
 import { App, Directive } from '@vue/runtime-core';
-import { sn } from '../SpatialNavigation';
+import { sn } from '../Boussole';
 import 'focus-options-polyfill';
 import 'scroll-behavior-polyfill';
 import { Configuration, defaultConfiguration } from '../types/Configuration';
 
-const vueSpatialNavigation = {
+const vueModule = {
   disable () {
     sn.pause();
   },
@@ -16,7 +16,7 @@ const vueSpatialNavigation = {
     Object.assign(globalConfig, config);
     sn.init();
     sn.set(undefined, globalConfig as Configuration);
-    app.provide('$SpatialNavigation', sn);
+    app.provide('$Boussole', sn);
 
     const assignConfig = (sectionId: string | undefined, config: Configuration): Configuration => {
       const sectionConfig = ({ ...globalConfig }) as Configuration;
@@ -112,4 +112,4 @@ const vueSpatialNavigation = {
   }
 };
 
-export default vueSpatialNavigation;
+export {vueModule as boussole}
