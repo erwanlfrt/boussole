@@ -2808,7 +2808,6 @@ class Compass {
         this.core = _Core__WEBPACK_IMPORTED_MODULE_0__.core;
         this.ID_POOL_PREFIX = 'section-';
         this.EVENT_PREFIX = 'sn:';
-        this.focusOnMountedSections = [];
         this._throttle = null;
         // #endregion
     }
@@ -2820,7 +2819,7 @@ class Compass {
     }
     // #region PUBLIC FUNCTIONS
     /**
-     * Init listeners
+     * Init global listeners to listen for key, focus and blur events.
      */
     init() {
         if (!this._ready) {
@@ -2833,20 +2832,19 @@ class Compass {
         }
     }
     /**
-     * Remove listeners and reinitialize Compass attributes.
+     * Remove global listeners, reset Compass context.
      */
     uninit() {
         window.removeEventListener('blur', this.onBlur, true);
         window.removeEventListener('focus', this.onFocus, true);
         window.removeEventListener('keyup', this.onKeyUp);
         window.removeEventListener('keydown', this.onKeyDown);
-        // document.body.removeEventListener('click', onBodyClick);
         this.clear();
         this._idPool = 0;
         this._ready = false;
     }
     /**
-     * Clear attributes values.
+     * Clear Compass context.
      */
     clear() {
         this._sections = {};
@@ -2856,7 +2854,7 @@ class Compass {
         this._duringFocusChange = false;
     }
     /**
-     * Reset a lastFocusedElement and previous element of a section.
+     * Reset the last focused element and previous element of a section.
      * @param sectionId - section to reset
      */
     reset(sectionId) {
@@ -2873,8 +2871,8 @@ class Compass {
         }
     }
     /**
-     * Set the configuration of a section or set the global configuration
-     * @param sectionId - section to configure, undefined to set the global configuration.
+     * Set the configuration of a section.
+     * @param sectionId - section to configure.
      * @param config - configuration
      */
     set(sectionId, config) {
@@ -2984,7 +2982,6 @@ class Compass {
         const autoPause = !this._pause && silent;
         if (autoPause)
             this.pause();
-        // TO DO - add focusExtendedSelector and _focusElement ???
         if (this.isSection(element)) {
             result = this.focusSection(element, direction);
         }
@@ -2997,6 +2994,8 @@ class Compass {
     }
     /**
      * Move to another element
+     * @param direction - incoming direction
+     * @param selector - target element selector
      */
     move(direction, selector) {
         let element = undefined;
@@ -3040,7 +3039,6 @@ class Compass {
             }
         }
         else {
-            // make focusable all sections (init ?)
             for (const id in this._sections) {
                 this.doMakeFocusable(this._sections[id].configuration);
             }
@@ -3077,23 +3075,6 @@ class Compass {
             return this._focusElement(element, nextSectionId, enterIntoNewSection, _types_Direction__WEBPACK_IMPORTED_MODULE_2__.Direction.UP);
         }
         return false;
-    }
-    /**
-     * Focus the section once it has been mounted
-     * @param sectionId id of the section to focus
-     */
-    focusOnMounted(sectionId) {
-        this.focusOnMountedSections.push(sectionId);
-    }
-    /**
-     * Check if Spatial Navigation is waiting this element to be mounted before focusing it.
-     * @param element element to check
-     */
-    hasBeenWaitingForMounted(sectionId) {
-        if (this.focusOnMountedSections.includes(sectionId)) {
-            this.focusSection(sectionId, _types_Direction__WEBPACK_IMPORTED_MODULE_2__.Direction.UP);
-            this.focusOnMountedSections = this.focusOnMountedSections.filter((foms) => foms !== sectionId);
-        }
     }
     // #endregion
     // #region PRIVATE FUNCTIONS

@@ -14,29 +14,28 @@ declare class Compass {
     private core;
     private readonly ID_POOL_PREFIX;
     private readonly EVENT_PREFIX;
-    private focusOnMountedSections;
     private _throttle;
     static getInstance(): Compass;
     /**
-     * Init listeners
+     * Init global listeners to listen for key, focus and blur events.
      */
     init(): void;
     /**
-     * Remove listeners and reinitialize Compass attributes.
+     * Remove global listeners, reset Compass context.
      */
     uninit(): void;
     /**
-     * Clear attributes values.
+     * Clear Compass context.
      */
     clear(): void;
     /**
-     * Reset a lastFocusedElement and previous element of a section.
+     * Reset the last focused element and previous element of a section.
      * @param sectionId - section to reset
      */
     reset(sectionId: string): void;
     /**
-     * Set the configuration of a section or set the global configuration
-     * @param sectionId - section to configure, undefined to set the global configuration.
+     * Set the configuration of a section.
+     * @param sectionId - section to configure.
      * @param config - configuration
      */
     set(sectionId: string | undefined, config: Configuration): boolean | never;
@@ -83,6 +82,8 @@ declare class Compass {
     focus(element: string, silent: boolean, direction: Direction): boolean;
     /**
      * Move to another element
+     * @param direction - incoming direction
+     * @param selector - target element selector
      */
     move(direction: Direction, selector: string | undefined): boolean;
     /**
@@ -99,16 +100,6 @@ declare class Compass {
      * Focus an element
      */
     focusElement(element: HTMLElement): boolean;
-    /**
-     * Focus the section once it has been mounted
-     * @param sectionId id of the section to focus
-     */
-    focusOnMounted(sectionId: string): void;
-    /**
-     * Check if Spatial Navigation is waiting this element to be mounted before focusing it.
-     * @param element element to check
-     */
-    hasBeenWaitingForMounted(sectionId: string): void;
     /**
      * Generate a unique id for a section
      * @returns new id section

@@ -56,9 +56,6 @@ const vueModule = {
           sectionId = binding.arg;
           element.dataset['sectionId'] = sectionId;
         }
-        if (sectionId) {
-          sn.hasBeenWaitingForMounted(sectionId);
-        }
       },
       unmounted (element: HTMLElement) {
         if (element.dataset['sectionId']) {
