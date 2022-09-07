@@ -56,8 +56,8 @@
     "scroll-behavior-polyfill": "^2.0.13"
   },
   "exports": {
-    ".": "./dist/compass.js",
-    "./angular": "./dist/angular/fesm2015/boussole.mjs",
+    ".": "./dist/boussole.js",
+    "./angular": "./dist/angular/fesm2015/compass.mjs",
     "./react": "./dist/react.js"
   },
   "typesVersions": {
