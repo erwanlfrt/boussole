@@ -41,7 +41,7 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
     // SpatialNavigation.getInstance().setDefaultSection(sectionId);
     //   }
 
-    const child= React.Children.map(props.children, child => {
+    const child = React.Children.map(props.children, child => {
       // Checking isValidElement is the safe way and avoids a typescript
       // error too.
       if (React.isValidElement(child)) {
