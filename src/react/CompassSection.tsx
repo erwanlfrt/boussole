@@ -1,5 +1,5 @@
 import React, { createRef, forwardRef } from 'react';
-import { Compass } from '../Compass';
+import { Compass } from '../Boussole';
 import { Configuration, defaultConfiguration } from '../types/Configuration';
 
 class ElementProps implements React.HTMLProps<HTMLElement> {

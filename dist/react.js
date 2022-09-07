@@ -2777,10 +2777,10 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/Compass.ts":
-/*!************************!*\
-  !*** ./src/Compass.ts ***!
-  \************************/
+/***/ "./src/Boussole.ts":
+/*!*************************!*\
+  !*** ./src/Boussole.ts ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4124,7 +4124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Compass */ "./src/Compass.ts");
+/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
 /* harmony import */ var _types_Configuration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/Configuration */ "./src/types/Configuration.ts");
 
 
@@ -4151,16 +4151,16 @@ const CompassSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props,
         sectionId = props.id;
         config = props.conf;
         try {
-            _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(sectionId, config);
+            _Boussole__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(sectionId, config);
         }
         catch (error) { }
     }
     else {
-        sectionId = _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
+        sectionId = _Boussole__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
     }
     // config.element = this.el.nativeElement;
     if (config) {
-        _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().set(sectionId, assignConfig(sectionId, config));
+        _Boussole__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().set(sectionId, assignConfig(sectionId, config));
     }
     // set default section
     // if (this.focusSection.modifiers.default) {
@@ -4454,13 +4454,13 @@ var __webpack_exports__ = {};
   \****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Compass": () => (/* reexport safe */ _Compass__WEBPACK_IMPORTED_MODULE_2__.Compass),
+/* harmony export */   "Compass": () => (/* reexport safe */ _Boussole__WEBPACK_IMPORTED_MODULE_2__.Compass),
 /* harmony export */   "CompassElement": () => (/* reexport safe */ _CompassElement__WEBPACK_IMPORTED_MODULE_0__["default"]),
 /* harmony export */   "CompassSection": () => (/* reexport safe */ _CompassSection__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
 /* harmony import */ var _CompassElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompassElement */ "./src/react/CompassElement.tsx");
 /* harmony import */ var _CompassSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompassSection */ "./src/react/CompassSection.tsx");
-/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Compass */ "./src/Compass.ts");
+/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
 
 
 

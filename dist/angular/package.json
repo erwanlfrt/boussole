@@ -1,5 +1,5 @@
 {
-  "name": "boussole",
+  "name": "compass",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.1.0",
@@ -8,11 +8,11 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "module": "fesm2015/boussole.mjs",
-  "es2020": "fesm2020/boussole.mjs",
-  "esm2020": "esm2020/boussole.mjs",
-  "fesm2020": "fesm2020/boussole.mjs",
-  "fesm2015": "fesm2015/boussole.mjs",
+  "module": "fesm2015/compass.mjs",
+  "es2020": "fesm2020/compass.mjs",
+  "esm2020": "esm2020/compass.mjs",
+  "fesm2020": "fesm2020/compass.mjs",
+  "fesm2015": "fesm2015/compass.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -20,11 +20,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/boussole.mjs",
-      "es2020": "./fesm2020/boussole.mjs",
-      "es2015": "./fesm2015/boussole.mjs",
-      "node": "./fesm2015/boussole.mjs",
-      "default": "./fesm2020/boussole.mjs"
+      "esm2020": "./esm2020/compass.mjs",
+      "es2020": "./fesm2020/compass.mjs",
+      "es2015": "./fesm2015/compass.mjs",
+      "node": "./fesm2015/compass.mjs",
+      "default": "./fesm2020/compass.mjs"
     }
   },
   "sideEffects": false,

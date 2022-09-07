@@ -1535,4 +1535,4 @@ CompassModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
  */
 
 export { CompassModule, CompassService, FocusDirective, FocusSectionDirective };
-//# sourceMappingURL=boussole.mjs.map
+//# sourceMappingURL=compass.mjs.map

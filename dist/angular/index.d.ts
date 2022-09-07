@@ -1,6 +1,6 @@
 /**
  * Generated bundle index. Do not edit.
  */
-/// <amd-module name="boussole" />
+/// <amd-module name="compass" />
 export * from './boussole-angular';
-//# sourceMappingURL=boussole.d.ts.map
+//# sourceMappingURL=compass.d.ts.map

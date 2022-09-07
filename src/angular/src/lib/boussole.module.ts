@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FocusDirective } from './directives/focus.directive';
 import { FocusSectionDirective } from './directives/focusSection.directive';
 import { Configuration, defaultConfiguration } from '../../../types/Configuration';
-import { sn } from '../../../Compass'
+import { sn } from '../../../Boussole'
 
 
 @NgModule({

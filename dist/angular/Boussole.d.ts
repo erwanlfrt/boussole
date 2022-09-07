@@ -219,4 +219,4 @@ declare class Compass {
 }
 declare const sn: Compass;
 export { Compass, sn };
-//# sourceMappingURL=Compass.d.ts.map
+//# sourceMappingURL=Boussole.d.ts.map

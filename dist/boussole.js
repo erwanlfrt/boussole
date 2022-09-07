@@ -12,10 +12,10 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/Compass.ts":
-/*!************************!*\
-  !*** ./src/Compass.ts ***!
-  \************************/
+/***/ "./src/Boussole.ts":
+/*!*************************!*\
+  !*** ./src/Boussole.ts ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1567,10 +1567,10 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Compass": () => (/* reexport safe */ _Compass__WEBPACK_IMPORTED_MODULE_0__.Compass),
+/* harmony export */   "Compass": () => (/* reexport safe */ _Boussole__WEBPACK_IMPORTED_MODULE_0__.Compass),
 /* harmony export */   "defaultConfiguration": () => (/* reexport safe */ _types_Configuration__WEBPACK_IMPORTED_MODULE_1__.defaultConfiguration)
 /* harmony export */ });
-/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Compass */ "./src/Compass.ts");
+/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boussole */ "./src/Boussole.ts");
 /* harmony import */ var _types_Configuration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types/Configuration */ "./src/types/Configuration.ts");
 
 

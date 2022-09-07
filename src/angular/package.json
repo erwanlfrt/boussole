@@ -1,5 +1,5 @@
 {
-  "name": "boussole",
+  "name": "compass",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.1.0",

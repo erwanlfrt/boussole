@@ -1,6 +1,6 @@
 import { Configuration } from './types/Configuration';
 import { Direction } from './types/Direction';
-declare class Boussole {
+declare class Compass {
     private static instance;
     private _ready;
     private _idPool;
@@ -16,13 +16,13 @@ declare class Boussole {
     private readonly EVENT_PREFIX;
     private focusOnMountedSections;
     private _throttle;
-    static getInstance(): Boussole;
+    static getInstance(): Compass;
     /**
      * Init listeners
      */
     init(): void;
     /**
-     * Remove listeners and reinitialize Boussole attributes.
+     * Remove listeners and reinitialize Compass attributes.
      */
     uninit(): void;
     /**
@@ -217,5 +217,5 @@ declare class Boussole {
      */
     private doMakeFocusable;
 }
-declare const sn: Boussole;
-export { Boussole, sn };
+declare const sn: Compass;
+export { Compass, sn };
