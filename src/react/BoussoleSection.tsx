@@ -45,7 +45,7 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
       // Checking isValidElement is the safe way and avoids a typescript
       // error too.
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, {"data-section-id": sectionId, tabIndex: -1 });
+        return React.cloneElement(child, {"data-section-id": sectionId, tabIndex: -1 } as any);
       }
       return child;
     });

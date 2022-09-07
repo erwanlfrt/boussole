@@ -9,7 +9,7 @@ const BoussoleElement = forwardRef<HTMLElement, ElementProps>(
       // Checking isValidElement is the safe way and avoids a typescript
       // error too.
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, {"data-focusable": true, tabIndex: -1 });
+        return React.cloneElement(child, {"data-focusable": true, tabIndex: -1 } as any);
       }
       return child;
     });
