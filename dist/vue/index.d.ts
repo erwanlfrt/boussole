@@ -7,4 +7,4 @@ declare const vueModule: {
     enable(): void;
     install(app: App, config: Configuration): void;
 };
-export { vueModule as boussole };
+export { vueModule as compass };

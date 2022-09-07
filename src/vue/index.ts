@@ -112,4 +112,4 @@ const vueModule = {
   }
 };
 
-export {vueModule as boussole}
+export {vueModule as compass}

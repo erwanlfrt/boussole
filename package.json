@@ -58,7 +58,8 @@
   "exports": {
     ".": "./dist/boussole.js",
     "./angular": "./dist/angular/fesm2015/compass.mjs",
-    "./react": "./dist/react.js"
+    "./react": "./dist/react.js",
+    "./vue": "./dist/vue.js"
   },
   "typesVersions": {
     "*": {
@@ -67,6 +68,9 @@
       ],
       "react": [
         "./dist/react/index.d.ts"
+      ],
+      "vue": [
+        "./dist/vue/index.d.ts"
       ]
     }
   }

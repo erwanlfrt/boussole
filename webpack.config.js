@@ -4,7 +4,8 @@ module.exports = {
   mode: 'development',
   entry: {
     'boussole': './src/index.ts',
-    'react': './src/react/index.ts'
+    'react': './src/react/index.ts',
+    'vue': './src/vue/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
