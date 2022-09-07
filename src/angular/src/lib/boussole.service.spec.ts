@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BoussoleService } from './boussole.service';
+import { CompassService } from './boussole.service';
 
-describe('BoussoleService', () => {
-  let service: BoussoleService;
+describe('CompassService', () => {
+  let service: CompassService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BoussoleService);
+    service = TestBed.inject(CompassService);
   });
 
   it('should be created', () => {

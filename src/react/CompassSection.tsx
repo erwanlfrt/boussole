@@ -1,5 +1,5 @@
 import React, { createRef, forwardRef } from 'react';
-import { Boussole } from '../Boussole';
+import { Compass } from '../Compass';
 import { Configuration, defaultConfiguration } from '../types/Configuration';
 
 class ElementProps implements React.HTMLProps<HTMLElement> {
@@ -18,7 +18,7 @@ const assignConfig = (sectionId: string | undefined, config: Configuration): Con
   return sectionConfig;
 };
 
-const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
+const CompassSection = forwardRef<HTMLElement, ElementProps>(
   (props,ref) => {
     let sectionId = '';
     let config: Configuration = {};
@@ -26,19 +26,19 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
       sectionId = props.id;
       config = props.conf as Configuration;
       try {
-        Boussole.getInstance().add(sectionId, config);
+        Compass.getInstance().add(sectionId, config);
       } catch (error) {}
     } else {
-      sectionId = Boussole.getInstance().add(undefined, defaultConfiguration);
+      sectionId = Compass.getInstance().add(undefined, defaultConfiguration);
     }
     
     // config.element = this.el.nativeElement;
     if (config) {
-      Boussole.getInstance().set(sectionId, assignConfig(sectionId, config));
+      Compass.getInstance().set(sectionId, assignConfig(sectionId, config));
     }
     // set default section
     // if (this.focusSection.modifiers.default) {
-    // Boussole.getInstance().setDefaultSection(sectionId);
+    // Compass.getInstance().setDefaultSection(sectionId);
     //   }
 
     const child = React.Children.map(props.children, child => {
@@ -57,4 +57,4 @@ const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
   }
 )
 
-export default BoussoleSection;
+export default CompassSection;

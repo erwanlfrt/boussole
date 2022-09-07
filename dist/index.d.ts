@@ -1,3 +1,3 @@
-import { Boussole } from './Boussole';
+import { Compass } from './Compass';
 import { Configuration, defaultConfiguration } from './types/Configuration';
-export { Boussole, Configuration, defaultConfiguration };
+export { Compass, Configuration, defaultConfiguration };

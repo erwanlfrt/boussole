@@ -12,15 +12,15 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/Boussole.ts":
-/*!*************************!*\
-  !*** ./src/Boussole.ts ***!
-  \*************************/
+/***/ "./src/Compass.ts":
+/*!************************!*\
+  !*** ./src/Compass.ts ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Boussole": () => (/* binding */ Boussole),
+/* harmony export */   "Compass": () => (/* binding */ Compass),
 /* harmony export */   "sn": () => (/* binding */ sn)
 /* harmony export */ });
 /* harmony import */ var _Core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Core */ "./src/Core.ts");
@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Boussole {
+class Compass {
     constructor() {
         this._ready = false;
         this._idPool = 0;
@@ -48,10 +48,10 @@ class Boussole {
         // #endregion
     }
     static getInstance() {
-        if (!Boussole.instance) {
-            Boussole.instance = new Boussole();
+        if (!Compass.instance) {
+            Compass.instance = new Compass();
         }
-        return Boussole.instance;
+        return Compass.instance;
     }
     // #region PUBLIC FUNCTIONS
     /**
@@ -68,7 +68,7 @@ class Boussole {
         }
     }
     /**
-     * Remove listeners and reinitialize Boussole attributes.
+     * Remove listeners and reinitialize Compass attributes.
      */
     uninit() {
         window.removeEventListener('blur', this.onBlur, true);
@@ -927,7 +927,7 @@ class Boussole {
         });
     }
 }
-const sn = Boussole.getInstance();
+const sn = Compass.getInstance();
 
 
 
@@ -1567,10 +1567,10 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Boussole": () => (/* reexport safe */ _Boussole__WEBPACK_IMPORTED_MODULE_0__.Boussole),
+/* harmony export */   "Compass": () => (/* reexport safe */ _Compass__WEBPACK_IMPORTED_MODULE_0__.Compass),
 /* harmony export */   "defaultConfiguration": () => (/* reexport safe */ _types_Configuration__WEBPACK_IMPORTED_MODULE_1__.defaultConfiguration)
 /* harmony export */ });
-/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boussole */ "./src/Boussole.ts");
+/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Compass */ "./src/Compass.ts");
 /* harmony import */ var _types_Configuration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types/Configuration */ "./src/types/Configuration.ts");
 
 

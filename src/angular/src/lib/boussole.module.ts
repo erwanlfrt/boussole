@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FocusDirective } from './directives/focus.directive';
 import { FocusSectionDirective } from './directives/focusSection.directive';
 import { Configuration, defaultConfiguration } from '../../../types/Configuration';
-import { sn } from '../../../Boussole'
+import { sn } from '../../../Compass'
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { sn } from '../../../Boussole'
     FocusSectionDirective
   ]
 })
-export class BoussoleModule {
+export class CompassModule {
 
   constructor() {
     const globalConfig = defaultConfiguration;

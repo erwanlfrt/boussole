@@ -1,4 +1,4 @@
-import BoussoleElement from "./BoussoleElement";
-import BoussoleSection from "./BoussoleSection";
-import { Boussole } from "../Boussole";
-export { BoussoleElement, BoussoleSection, Boussole };
+import CompassElement from "./CompassElement";
+import CompassSection from "./CompassSection";
+import { Compass } from "../Compass";
+export { CompassElement, CompassSection, Compass };

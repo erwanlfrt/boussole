@@ -2777,15 +2777,15 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/Boussole.ts":
-/*!*************************!*\
-  !*** ./src/Boussole.ts ***!
-  \*************************/
+/***/ "./src/Compass.ts":
+/*!************************!*\
+  !*** ./src/Compass.ts ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Boussole": () => (/* binding */ Boussole),
+/* harmony export */   "Compass": () => (/* binding */ Compass),
 /* harmony export */   "sn": () => (/* binding */ sn)
 /* harmony export */ });
 /* harmony import */ var _Core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Core */ "./src/Core.ts");
@@ -2794,7 +2794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Boussole {
+class Compass {
     constructor() {
         this._ready = false;
         this._idPool = 0;
@@ -2813,10 +2813,10 @@ class Boussole {
         // #endregion
     }
     static getInstance() {
-        if (!Boussole.instance) {
-            Boussole.instance = new Boussole();
+        if (!Compass.instance) {
+            Compass.instance = new Compass();
         }
-        return Boussole.instance;
+        return Compass.instance;
     }
     // #region PUBLIC FUNCTIONS
     /**
@@ -2833,7 +2833,7 @@ class Boussole {
         }
     }
     /**
-     * Remove listeners and reinitialize Boussole attributes.
+     * Remove listeners and reinitialize Compass attributes.
      */
     uninit() {
         window.removeEventListener('blur', this.onBlur, true);
@@ -3692,7 +3692,7 @@ class Boussole {
         });
     }
 }
-const sn = Boussole.getInstance();
+const sn = Compass.getInstance();
 
 
 
@@ -4083,10 +4083,10 @@ const core = Core.getInstance();
 
 /***/ }),
 
-/***/ "./src/react/BoussoleElement.tsx":
-/*!***************************************!*\
-  !*** ./src/react/BoussoleElement.tsx ***!
-  \***************************************/
+/***/ "./src/react/CompassElement.tsx":
+/*!**************************************!*\
+  !*** ./src/react/CompassElement.tsx ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4096,7 +4096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const BoussoleElement = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
+const CompassElement = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
     const child = react__WEBPACK_IMPORTED_MODULE_0___default().Children.map(props.children, child => {
         // Checking isValidElement is the safe way and avoids a typescript
         // error too.
@@ -4107,15 +4107,15 @@ const BoussoleElement = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props
     });
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, child));
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BoussoleElement);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompassElement);
 
 
 /***/ }),
 
-/***/ "./src/react/BoussoleSection.tsx":
-/*!***************************************!*\
-  !*** ./src/react/BoussoleSection.tsx ***!
-  \***************************************/
+/***/ "./src/react/CompassSection.tsx":
+/*!**************************************!*\
+  !*** ./src/react/CompassSection.tsx ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -4124,7 +4124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
+/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Compass */ "./src/Compass.ts");
 /* harmony import */ var _types_Configuration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/Configuration */ "./src/types/Configuration.ts");
 
 
@@ -4144,27 +4144,27 @@ const assignConfig = (sectionId, config) => {
     sectionConfig.selector = `[data-section-id="${sectionId}"] [data-focusable=true]`;
     return sectionConfig;
 };
-const BoussoleSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
+const CompassSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => {
     let sectionId = '';
     let config = {};
     if (props.id && props.conf) {
         sectionId = props.id;
         config = props.conf;
         try {
-            _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().add(sectionId, config);
+            _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(sectionId, config);
         }
         catch (error) { }
     }
     else {
-        sectionId = _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
+        sectionId = _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().add(undefined, _types_Configuration__WEBPACK_IMPORTED_MODULE_2__.defaultConfiguration);
     }
     // config.element = this.el.nativeElement;
     if (config) {
-        _Boussole__WEBPACK_IMPORTED_MODULE_1__.Boussole.getInstance().set(sectionId, assignConfig(sectionId, config));
+        _Compass__WEBPACK_IMPORTED_MODULE_1__.Compass.getInstance().set(sectionId, assignConfig(sectionId, config));
     }
     // set default section
     // if (this.focusSection.modifiers.default) {
-    // Boussole.getInstance().setDefaultSection(sectionId);
+    // Compass.getInstance().setDefaultSection(sectionId);
     //   }
     const child = react__WEBPACK_IMPORTED_MODULE_0___default().Children.map(props.children, child => {
         // Checking isValidElement is the safe way and avoids a typescript
@@ -4176,7 +4176,7 @@ const BoussoleSection = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props
     });
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, child));
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BoussoleSection);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompassSection);
 
 
 /***/ }),
@@ -4454,13 +4454,13 @@ var __webpack_exports__ = {};
   \****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Boussole": () => (/* reexport safe */ _Boussole__WEBPACK_IMPORTED_MODULE_2__.Boussole),
-/* harmony export */   "BoussoleElement": () => (/* reexport safe */ _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "BoussoleSection": () => (/* reexport safe */ _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__["default"])
+/* harmony export */   "Compass": () => (/* reexport safe */ _Compass__WEBPACK_IMPORTED_MODULE_2__.Compass),
+/* harmony export */   "CompassElement": () => (/* reexport safe */ _CompassElement__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "CompassSection": () => (/* reexport safe */ _CompassSection__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
-/* harmony import */ var _BoussoleElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoussoleElement */ "./src/react/BoussoleElement.tsx");
-/* harmony import */ var _BoussoleSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoussoleSection */ "./src/react/BoussoleSection.tsx");
-/* harmony import */ var _Boussole__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Boussole */ "./src/Boussole.ts");
+/* harmony import */ var _CompassElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompassElement */ "./src/react/CompassElement.tsx");
+/* harmony import */ var _CompassSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompassSection */ "./src/react/CompassSection.tsx");
+/* harmony import */ var _Compass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Compass */ "./src/Compass.ts");
 
 
 

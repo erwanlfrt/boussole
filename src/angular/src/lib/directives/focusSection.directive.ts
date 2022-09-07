@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { sn } from '../../../../Boussole'
+import { sn } from '../../../../Compass'
 import { Configuration, defaultConfiguration } from '../../../../types/Configuration'
 
 interface SectionDirective {

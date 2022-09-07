@@ -1,9 +1,9 @@
 {
-  "name": "boussole",
+  "name": "compass",
   "version": "0.0.1",
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
-  "main": "dist/boussole.js",
+  "main": "dist/compass.js",
   "scripts": {
     "build": "webpack",
     "build:angular": "ng build boussole --configuration development",
@@ -56,7 +56,7 @@
     "scroll-behavior-polyfill": "^2.0.13"
   },
   "exports": {
-    ".": "./dist/boussole.js",
+    ".": "./dist/compass.js",
     "./angular": "./dist/angular/fesm2015/boussole.mjs",
     "./react": "./dist/react.js"
   },

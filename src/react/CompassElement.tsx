@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 type ElementProps =  React.HTMLProps<HTMLElement>
 
-const BoussoleElement = forwardRef<HTMLElement, ElementProps>(
+const CompassElement = forwardRef<HTMLElement, ElementProps>(
   (props, ref) => {
 
     const child= React.Children.map(props.children, child => {
@@ -22,4 +22,4 @@ const BoussoleElement = forwardRef<HTMLElement, ElementProps>(
   }
 )
 
-export default BoussoleElement;
+export default CompassElement;

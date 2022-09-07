@@ -3,8 +3,8 @@ import { Configuration, defaultConfiguration } from './types/Configuration';
 import { Direction, directiontoString, getReverseDirection } from './types/Direction';
 import { Section } from './types/Section';
 
-class Boussole {
-  private static instance: Boussole;
+class Compass {
+  private static instance: Compass;
   private _ready: boolean = false;
   private _idPool: number = 0;
   private _sections: { [key: string]: Section; } = {};
@@ -20,11 +20,11 @@ class Boussole {
   private focusOnMountedSections: string[] = [];
   private _throttle: number | null = null;
 
-  public static getInstance (): Boussole {
-    if (!Boussole.instance) {
-      Boussole.instance = new Boussole();
+  public static getInstance (): Compass {
+    if (!Compass.instance) {
+      Compass.instance = new Compass();
     }
-    return Boussole.instance;
+    return Compass.instance;
   }
 
   // #region PUBLIC FUNCTIONS
@@ -44,7 +44,7 @@ class Boussole {
   }
 
   /**
-   * Remove listeners and reinitialize Boussole attributes.
+   * Remove listeners and reinitialize Compass attributes.
    */
   public uninit (): void {
     window.removeEventListener('blur', this.onBlur, true);
@@ -981,5 +981,5 @@ class Boussole {
   // #endregion
 }
 
-const sn = Boussole.getInstance();
-export { Boussole, sn };
+const sn = Compass.getInstance();
+export { Compass, sn };

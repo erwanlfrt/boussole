@@ -1,5 +1,5 @@
 import { App, Directive } from '@vue/runtime-core';
-import { sn } from '../Boussole';
+import { sn } from '../Compass';
 import 'focus-options-polyfill';
 import 'scroll-behavior-polyfill';
 import { Configuration, defaultConfiguration } from '../types/Configuration';
@@ -16,7 +16,7 @@ const vueModule = {
     Object.assign(globalConfig, config);
     sn.init();
     sn.set(undefined, globalConfig as Configuration);
-    app.provide('$Boussole', sn);
+    app.provide('$Compass', sn);
 
     const assignConfig = (sectionId: string | undefined, config: Configuration): Configuration => {
       const sectionConfig = ({ ...globalConfig }) as Configuration;
