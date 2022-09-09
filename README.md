@@ -2,7 +2,7 @@
 
 JS/TS library for spatial navigation
 
-Read the doc : https://erwanlfrt.github.io/compass/
+Read the doc : https://erwanlfrt.github.io/boussole
 
 
 ## Credits
