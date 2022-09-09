@@ -1,5 +1,5 @@
 {
-  "name": "compass",
+  "name": "boussole",
   "version": "0.0.1",
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
