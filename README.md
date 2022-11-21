@@ -1,4 +1,4 @@
-# Compass
+# Boussole
 
 JS/TS library for spatial navigation
 

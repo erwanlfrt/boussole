@@ -1,4 +1,4 @@
 import { Compass } from './Compass';
 import { Configuration, defaultConfiguration } from './types/Configuration';
 
-export { Compass, Configuration, defaultConfiguration};
+export { Compass as Boussole, Configuration, defaultConfiguration};

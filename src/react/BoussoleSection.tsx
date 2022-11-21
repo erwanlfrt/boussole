@@ -18,7 +18,7 @@ const assignConfig = (sectionId: string | undefined, config: Configuration): Con
   return sectionConfig;
 };
 
-const CompassSection = forwardRef<HTMLElement, ElementProps>(
+const BoussoleSection = forwardRef<HTMLElement, ElementProps>(
   (props,ref) => {
     let sectionId = '';
     let config: Configuration = {};
@@ -57,4 +57,4 @@ const CompassSection = forwardRef<HTMLElement, ElementProps>(
   }
 )
 
-export default CompassSection;
+export default BoussoleSection;

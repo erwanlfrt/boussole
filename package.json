@@ -1,6 +1,6 @@
 {
   "name": "boussole",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "js library for spatial navigation",
   "types": "dist/index.d.ts",
   "main": "dist/compass.js",
@@ -57,7 +57,7 @@
   },
   "exports": {
     ".": "./dist/boussole.js",
-    "./angular": "./dist/angular/fesm2015/compass.mjs",
+    "./angular": "./dist/angular/fesm2015/boussole.mjs",
     "./react": "./dist/react.js",
     "./vue": "./dist/vue.js"
   },

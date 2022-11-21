@@ -16,7 +16,7 @@ const vueModule = {
     Object.assign(globalConfig, config);
     sn.init();
     sn.set(undefined, globalConfig as Configuration);
-    app.provide('$Compass', sn);
+    app.provide('$Boussole', sn);
 
     const assignConfig = (sectionId: string | undefined, config: Configuration): Configuration => {
       const sectionConfig = ({ ...globalConfig }) as Configuration;
@@ -109,4 +109,4 @@ const vueModule = {
   }
 };
 
-export {vueModule as compass}
+export {vueModule as boussole}

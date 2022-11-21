@@ -17,7 +17,7 @@ import { sn } from '../../../Compass'
     FocusSectionDirective
   ]
 })
-export class CompassModule {
+export class BoussoleModule {
 
   constructor() {
     const globalConfig = defaultConfiguration;
